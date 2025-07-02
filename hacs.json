@@ -1,0 +1,7 @@
+{
+  "name": "THW Stein.APP API",
+  "content_in_root": false,
+  "zip_release": false,
+  "domains": ["thw_stein"],
+  "homeassistant": "2024.0.0"
+}
