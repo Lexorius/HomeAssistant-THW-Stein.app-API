@@ -67,3 +67,16 @@ Funktionsfähige, voll dokumentierte Version. Behebt alle bekannten Fehler, erg�
 [MIT License](LICENSE)
 
 © 2025 [@lexorius](https://github.com/lexorius)
+
+---
+
+## Einrichtung – Felder erklärt
+
+Beim Hinzufügen der Integration wirst du nach folgenden Informationen gefragt:
+
+- **Benutzername:** Dein Benutzername aus der Stein.APP (meist E-Mail-Adresse)
+- **Passwort:** Dein Stein.APP-Passwort
+- **Einheit / Benutzername (OV-Name):** Interner Name deiner Einheit, z. B. `ov-heilbronn`
+- **Scan-Intervall:** (optional) Wie oft die Daten in Sekunden aktualisiert werden sollen (Standard: 300)
+
+Falls du dir unsicher bist, kannst du dich parallel in der offiziellen App einloggen und in der URL den OV-Namen ablesen.

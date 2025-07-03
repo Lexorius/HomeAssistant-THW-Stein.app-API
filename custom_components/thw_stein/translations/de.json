@@ -1,0 +1,25 @@
+{
+  "title": "THW Stein",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbindung zur Stein.APP",
+        "description": "Bitte gib deine Zugangsdaten zur Stein.APP an, sowie den internen Namen deiner OV-Einheit.",
+        "data": {
+          "username": "Benutzername",
+          "password": "Passwort",
+          "buname": "Einheit (z. B. ov-heilbronn)",
+          "scan_interval": "Scanintervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Optionen bearbeiten",
+        "description": "Du kannst hier Login-Daten und Intervall ändern."
+      }
+    }
+  }
+}
