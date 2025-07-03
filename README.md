@@ -6,7 +6,7 @@
 
 ---
 
-## Version 0.1.2 (Juli 2025)
+## Version 0.1.4 (Juli 2025)
 Funktionsfähige, voll dokumentierte Version. Behebt alle bekannten Fehler, ergänzt vollständige Konfigurations-Oberfläche und unterstützt Optionen.
 
 ---
