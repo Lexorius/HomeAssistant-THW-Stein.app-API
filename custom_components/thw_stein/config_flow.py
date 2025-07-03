@@ -1,4 +1,4 @@
-"""Config flow for THW Stein integration."""
+"""Config flow for THW Stein integration."""
 from __future__ import annotations
 
 import voluptuous as vol
@@ -27,7 +27,7 @@ DATA_SCHEMA = vol.Schema(
 
 
 class SteinConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for THW Stein."""
+    """Handle the initial configuration flow."""
 
     VERSION = 1
 
@@ -43,12 +43,12 @@ class SteinConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 
 class SteinOptionsFlow(config_entries.OptionsFlow):
-    """Options flow – allows editing after initial setup."""
+    """Handle options after the integration is set up."""
 
-    def __init__(self, config_entry):
+    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
+        self._config_entry = config_entry  # use private var to avoid deprecation warning
 
     async def async_step_init(self, user_input=None):
-        return await self.async_step_user(user_input)
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
         return self.async_show_form(step_id="init", data_schema=DATA_SCHEMA)

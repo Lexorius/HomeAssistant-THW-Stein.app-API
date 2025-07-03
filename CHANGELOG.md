@@ -1,3 +1,6 @@
+## 0.1.4
+* Rewrote `config_flow.py` with valid indentation and clean OptionsFlow implementation
+
 ## 0.1.2
 * Fix für `IndentationError` in `config_flow.py`
 
