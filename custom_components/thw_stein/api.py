@@ -65,6 +65,7 @@ class SteinClient:
 
         # 2) Download JS & extract X‑API‑KEY
         async with self._session.get(js_url) as resp:
+            _LOGGER.debug('Fetching JS: %s -> status %%s', js_url, js.status)
             js_code = await resp.text()
 
         key_match = None

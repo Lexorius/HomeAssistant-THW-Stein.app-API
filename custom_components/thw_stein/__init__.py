@@ -33,6 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up THW Stein from a config entry."""
     session = async_get_clientsession(hass)
     client = SteinClient(entry.data[CONF_BUNAME], session=session)
+    _LOGGER.debug('THW Stein login params: username=%s buname=%s', entry.data.get(CONF_USERNAME), entry.data.get(CONF_BUNAME))
 
     # Login once
     await client.login(entry.data[CONF_USERNAME], entry.data[CONF_PASSWORD])

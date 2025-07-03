@@ -1,3 +1,6 @@
+## 0.1.8
+* Added debug logging for login parameters and JS fetch status
+
 ## 0.1.7
 * Korrektur: content_in_root in hacs.json jetzt auf `false`
 * Bugfix: korrekte Manifest-Version für HACS
