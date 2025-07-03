@@ -19,3 +19,8 @@ Konfiguriert wird:
 ## Quelle
 
 Basierend auf der API von [steinapi](https://github.com/oscarminus/steinapi)
+
+
+### Neu in 0.2.6
+- Sensoren für jedes Asset
+- Polling über DataUpdateCoordinator

@@ -1,13 +1,10 @@
 {
   "name": "THW Stein",
   "content_in_root": false,
-  "domains": [
-    "sensor"
-  ],
-  "country": "de",
-  "homeassistant": "2024.1.0",
-  "iot_class": "cloud_polling",
-  "render_readme": true,
   "zip_release": false,
-  "filename": "custom_components/thw_stein/manifest.json"
+  "domains": [
+    "thw_stein"
+  ],
+  "homeassistant": "2024.1.0",
+  "render_readme": true
 }
