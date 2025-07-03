@@ -19,6 +19,7 @@ import aiohttp
 _LOGGER = logging.getLogger(__name__)
 
 BASE_URL = "https://stein.app"
+API_BASE = f"{BASE_URL}/api/api/ext"
 API_URL = f"{BASE_URL}/api/api"
 
 # Regex to find the embedded JS file on the Stein landing page
