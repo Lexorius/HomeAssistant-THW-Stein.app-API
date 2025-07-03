@@ -1,3 +1,6 @@
+## 0.2.1
+* Switched authentication header to `Authorization: Bearer <token>`
+
 ## 0.2.0
 * Switched authentication to API‑Key only (no username/password).
 * Updated config flow & constants.

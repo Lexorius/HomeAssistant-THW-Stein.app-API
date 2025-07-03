@@ -19,6 +19,7 @@ class SteinClient:
         self._headers = {
             "accept": "application/json, text/plain, */*",
             "content-type": "application/json",
+            "Authorization": f"Bearer {api_key}",
             "x-api-key": api_key,
         }
         self._bu: Dict[str, Any] | None = None
