@@ -1,3 +1,7 @@
+## 0.1.7
+* Korrektur: content_in_root in hacs.json jetzt auf `false`
+* Bugfix: korrekte Manifest-Version für HACS
+
 ## 0.1.5
 * HACS-Fix: content_in_root auf `true` gesetzt
 
