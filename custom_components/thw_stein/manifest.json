@@ -1,7 +1,8 @@
+
 {
   "domain": "thw_stein",
   "name": "THW Stein",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "documentation": "https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API",
   "requirements": ["aiohttp>=3.9.0", "python-dateutil>=2.9.0"],
   "codeowners": ["@lexorius"],

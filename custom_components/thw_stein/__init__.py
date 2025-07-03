@@ -1,3 +1,4 @@
+
 from datetime import timedelta
 import logging
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
@@ -23,8 +24,7 @@ async def async_setup_entry(hass, entry):
             raise UpdateFailed(exc) from exc
 
     coordinator = DataUpdateCoordinator(
-        hass, _LOGGER, name="Stein assets",
-        update_method=_update,
+        hass, _LOGGER, name="Stein assets", update_method=_update,
         update_interval=timedelta(seconds=entry.data.get("scan_interval", DEFAULT_SCAN_INTERVAL)),
     )
     await coordinator.async_config_entry_first_refresh()
