@@ -48,7 +48,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         self._attr_state = STATUS_MAP.get(raw_status, raw_status)
         self._attr_extra_state_attributes = {
             "label": asset.get("label"),
-            "status": asset.get("status"),
+            "status": STATUS_MAP.get(raw_status),
             "comment": asset.get("comment"),
             "category": asset.get("category"),
             "last_modified": asset.get("lastModified"),
