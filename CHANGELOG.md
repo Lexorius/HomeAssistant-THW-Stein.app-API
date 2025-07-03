@@ -1,14 +1,10 @@
 # Changelog
+## 0.1.0
+* Added full docstrings & inline comments for maintainability
+* Ensured constants only represent key names (not values)
+* Clean options flow and sensor update handling
 
+## 0.0.8
+* Added missing constants and modules
 ## 0.0.7
-- robuster Regex für `X-API-KEY`-Erkennung in JavaScript (nicht nur `headers.common`)
-- Fehlerbehandlung verbessert bei nicht gefundenem Key
-
-## 0.0.6
-- Fehlerhafte Regex (bad character range) behoben
-- saubere Fehlerausgabe bei fehlendem API-Key
-
-## 0.0.5
-- Blocking-Call entfernt (aiohttp statt httpx)
-- Robustere Extraktion von API-Key
-- README und Manifest aktualisiert
+* Robust regex for API key extraction
