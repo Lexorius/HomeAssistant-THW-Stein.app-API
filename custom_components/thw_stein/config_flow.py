@@ -48,6 +48,7 @@ class SteinOptionsFlow(config_entries.OptionsFlow):
     def __init__(self, config_entry):
 
     async def async_step_init(self, user_input=None):
+        return await self.async_step_user(user_input)
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
         return self.async_show_form(step_id="init", data_schema=DATA_SCHEMA)
