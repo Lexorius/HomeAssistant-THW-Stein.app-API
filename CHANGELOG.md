@@ -1,3 +1,6 @@
+## 0.1.9
+* Fix debug log variable name (resp.status)
+
 ## 0.1.8
 * Added debug logging for login parameters and JS fetch status
 
