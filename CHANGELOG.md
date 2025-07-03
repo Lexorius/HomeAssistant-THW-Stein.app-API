@@ -1,3 +1,6 @@
+## 0.1.5
+* HACS-Fix: content_in_root auf `true` gesetzt
+
 ## 0.1.4
 * Rewrote `config_flow.py` with valid indentation and clean OptionsFlow implementation
 
