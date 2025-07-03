@@ -4,21 +4,12 @@
     "step": {
       "user": {
         "title": "Connect to Stein.APP",
-        "description": "Please enter your Stein.APP login and the internal name of your OV unit.",
+        "description": "Enter your API key and unit name.",
         "data": {
-          "username": "Username",
-          "password": "Password",
+          "api_key": "API Key",
           "buname": "Unit (e.g. ov-heilbronn)",
           "scan_interval": "Scan interval (seconds)"
         }
-      }
-    }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "Edit options",
-        "description": "You can change login or interval settings here."
       }
     }
   }

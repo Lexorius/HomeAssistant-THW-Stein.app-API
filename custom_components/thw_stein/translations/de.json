@@ -3,22 +3,13 @@
   "config": {
     "step": {
       "user": {
-        "title": "Verbindung zur Stein.APP",
-        "description": "Bitte gib deine Zugangsdaten zur Stein.APP an, sowie den internen Namen deiner OV-Einheit.",
+        "title": "Stein.APP verbinden",
+        "description": "Gib deinen API‑Key und den internen Namen deiner Einheit ein.",
         "data": {
-          "username": "Benutzername",
-          "password": "Passwort",
+          "api_key": "API‑Key",
           "buname": "Einheit (z. B. ov-heilbronn)",
           "scan_interval": "Scanintervall (Sekunden)"
         }
-      }
-    }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "Optionen bearbeiten",
-        "description": "Du kannst hier Login-Daten und Intervall ändern."
       }
     }
   }

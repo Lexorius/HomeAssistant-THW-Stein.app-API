@@ -1,10 +1,15 @@
 {
   "domain": "thw_stein",
   "name": "THW Stein",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "documentation": "https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API",
-  "requirements": ["aiohttp>=3.9.0", "python-dateutil>=2.9.0"],
-  "codeowners": ["@lexorius"],
+  "requirements": [
+    "aiohttp>=3.9.0",
+    "python-dateutil>=2.9.0"
+  ],
+  "codeowners": [
+    "@lexorius"
+  ],
   "iot_class": "cloud_polling",
   "config_flow": true
 }

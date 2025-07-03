@@ -12,8 +12,8 @@ from homeassistant.core import HomeAssistant
 from .const import (
     DOMAIN,
     DEFAULT_SCAN_INTERVAL,
-    CONF_USERNAME,
-    CONF_PASSWORD,
+    
+    
     CONF_BUNAME,
     CONF_SCAN_INTERVAL,
 )
@@ -32,11 +32,11 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up THW Stein from a config entry."""
     session = async_get_clientsession(hass)
-    client = SteinClient(entry.data[CONF_BUNAME], session=session)
+    client = SteinClient(entry.data[CONF_BUNAME], api_key=entry.data[CONF_API_KEY], session=session)
     _LOGGER.debug('THW Stein login params: username=%s buname=%s', entry.data.get(CONF_USERNAME), entry.data.get(CONF_BUNAME))
 
     # Login once
-    await client.login(entry.data[CONF_USERNAME], entry.data[CONF_PASSWORD])
+    await client.login()
 
     async def _update():
         try:

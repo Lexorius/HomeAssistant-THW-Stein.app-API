@@ -1,3 +1,7 @@
+## 0.2.0
+* Switched authentication to API‑Key only (no username/password).
+* Updated config flow & constants.
+
 ## 0.1.9
 * Fix debug log variable name (resp.status)
 
