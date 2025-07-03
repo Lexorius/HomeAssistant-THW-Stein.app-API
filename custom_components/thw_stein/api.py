@@ -27,7 +27,7 @@ class SteinClient:
             raise SteinError("JS file not found in Stein front page.")
         async with self._session.get(f"{BASE_URL}/{m.group(1)}") as js_resp:
             js_text = await js_resp.text()
-        k = re.search(r'headers\\.common\\["X-API-KEY"]\\s*=\\s*"(\\w+)"', js_text)
+        k = re.search(r'headers\.common\["X-API-KEY"\]\s*=\s*"(\w+)"', js_text)
         if not k:
             raise SteinError("X-API-KEY not found in JS.")
         self._headers = {
