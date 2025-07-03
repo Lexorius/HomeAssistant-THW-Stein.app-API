@@ -9,10 +9,10 @@ from .api import SteinClient
 
 STATUS_MAP = {
     "ready": "Einsatzbereit",
-    "semiready": "Bedingt einsatzbereit",
-    "notready": "Nicht einsatzbereit",
     "inuse": "Im Einsatz",
     "maint": "In Wartung",
+    "semiready": "Bedingt einsatzbereit",
+    "notready": "Nicht einsatzbereit",
 }
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -21,8 +21,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     client: SteinClient = data["client"]
 
     entities = [SteinAssetSensor(coordinator, client, asset) for asset in coordinator.data]
-    async_add_entities(entities)
-
+    async_add_entities(entities, update_before_add=True)
 
 class SteinAssetSensor(CoordinatorEntity, SensorEntity):
     _attr_has_entity_name = True
@@ -33,14 +32,27 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         self._asset_id = asset["id"]
         self._update_from_asset(asset)
 
+    @staticmethod
+    def _compose_name(asset) -> str:
+        parts = [asset.get("label")]
+        if asset.get("name"):
+            parts.append(asset["name"])
+        if asset.get("radioName"):
+            parts.append(asset["radioName"])
+        return " ".join(filter(None, parts))
+
     def _update_from_asset(self, asset):
         self._attr_unique_id = f"stein_{self._asset_id}"
-        self._attr_name = asset.get("label")
-        self._attr_state = STATUS_MAP.get(asset.get("status"), asset.get("status"))
+        self._attr_name = self._compose_name(asset)
+        raw_status = asset.get("status")
+        self._attr_state = STATUS_MAP.get(raw_status, raw_status)
         self._attr_extra_state_attributes = {
+            "label": asset.get("label"),
+            "comment": asset.get("comment"),
             "category": asset.get("category"),
-            "plate": asset.get("plate"),
             "last_modified": asset.get("lastModified"),
+            "bu_id": asset.get("buId"),
+            "group_id": asset.get("groupId"),
         }
 
     async def _handle_coordinator_update(self):
