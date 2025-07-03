@@ -6,9 +6,9 @@
 
 ---
 
-## Version 0.1.5 (Juli 2025)
-Funktionsfähige, voll dokumentierte Version. Behebt alle bekannten Fehler, ergänzt vollständige Konfigurations-Oberfläche und unterstützt Optionen.
-
+## Version 0.2.1 (Juli 2025)
+API Key hinzugefügt
+OU muss zahl sein.
 ---
 
 ## Funktionen
