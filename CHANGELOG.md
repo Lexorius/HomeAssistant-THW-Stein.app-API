@@ -1,3 +1,7 @@
+## 0.1.1
+* Added multi-pattern API-key extraction
+* OptionsFlow deprecation fix
+
 # Changelog
 
 ## 0.1.0

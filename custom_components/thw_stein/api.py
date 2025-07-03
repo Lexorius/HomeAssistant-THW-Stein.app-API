@@ -25,7 +25,11 @@ API_URL = f"{BASE_URL}/api/api"
 JS_FILE_RX = r'<script[^>]+type="module"[^>]+src="([^"]+)"'
 
 # Regex to extract the X‑API‑KEY assignment inside that JS
-API_KEY_RX = r'["\']X-API-KEY["\']\s*[:=]\s*["\']([A-Za-z0-9]+)["\']'
+API_KEY_PATTERNS = [
+    r'["\']X-API-KEY["\']\s*[:=]\s*["\']([A-Za-z0-9_-]+)["\']',
+    r'["\']xApiKey["\']\s*[:=]\s*["\']([A-Za-z0-9_-]+)["\']',
+    r'["\']x-api-key["\']\s*[:=]\s*["\']([A-Za-z0-9_-]+)["\']',
+]
 
 
 class SteinError(RuntimeError):
@@ -63,7 +67,11 @@ class SteinClient:
         async with self._session.get(js_url) as resp:
             js_code = await resp.text()
 
-        key_match = re.search(API_KEY_RX, js_code)
+        key_match = None
+        for pattern in API_KEY_PATTERNS:
+            key_match = re.search(pattern, js_code, re.IGNORECASE)
+            if key_match:
+                break
         if not key_match:
             raise SteinError("X‑API‑KEY not found in Stein JavaScript.")
 
