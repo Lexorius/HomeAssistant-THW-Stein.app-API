@@ -6,9 +6,7 @@ from .const import DOMAIN
 async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
-    async_add_entities([
-        SteinAssetSensor(coordinator, entry, asset) for asset in coordinator.data
-    ])
+    async_add_entities([SteinAssetSensor(coordinator, entry, asset) for asset in coordinator.data])
 
 class SteinAssetSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator, entry, asset):

@@ -1,46 +1,52 @@
-"""Async-Wrapper um die (inoffizielle) Stein.APP-API."""
+"""Async wrapper for the unofficial Stein.APP API using aiohttp."""
 from __future__ import annotations
-import re, logging, httpx
+import re, logging, aiohttp
 from typing import Any, Dict, List
 
 _LOGGER = logging.getLogger(__name__)
 BASE_URL = "https://stein.app"
 API_URL  = f"{BASE_URL}/api/api"
-JS_RX    = r'headers\.common\["X-API-KEY"]="(\w+)"'
+JS_RX    = r'<script[^>]+type="module"[^>]+src="([^\"]+)"'
 
 class SteinError(RuntimeError):
     pass
 
 class SteinClient:
-    def __init__(self, buname: str, *, session: httpx.AsyncClient):
+    def __init__(self, buname: str, *, session: aiohttp.ClientSession):
         self._session, self._buname = session, buname
-        self._api_key: str | None = None
         self._headers: dict[str, str] = {}
         self._bu: dict[str, Any] | None = None
 
     async def _init_headers(self) -> None:
-        if self._api_key:
+        if self._headers:
             return
-        r = await self._session.get(BASE_URL)
-        m = re.search(r'<script type="module" crossorigin src="([\w/.-]+)"></script>', r.text)
-        js = await self._session.get(f"{BASE_URL}/{m.group(1)}")
-        m2 = re.search(JS_RX, js.text)
-        self._api_key = m2.group(1)
+        async with self._session.get(BASE_URL) as r:
+            html = await r.text()
+        m = re.search(JS_RX, html)
+        if not m:
+            raise SteinError("JS file not found in Stein front page.")
+        async with self._session.get(f"{BASE_URL}/{m.group(1)}") as js_resp:
+            js_text = await js_resp.text()
+        k = re.search(r'headers\\.common\\["X-API-KEY"]\\s*=\\s*"(\\w+)"', js_text)
+        if not k:
+            raise SteinError("X-API-KEY not found in JS.")
         self._headers = {
             "accept": "application/json, text/plain, */*",
             "content-type": "application/json",
-            "x-api-key": self._api_key,
+            "x-api-key": k.group(1),
         }
 
     async def login(self, user: str, pwd: str) -> None:
         await self._init_headers()
         await self._session.post(f"{API_URL}/login_check", json={"username": user, "password": pwd})
-        data = (await self._session.get(f"{API_URL}/app/data", headers=self._headers)).json()
-        self._bu = next(bu for bu in data["bus"] if bu["name"] == self._buname)
+        async with self._session.get(f"{API_URL}/app/data", headers=self._headers) as resp:
+            data = await resp.json()
+        self._bu = next(bu for bu in data["bus"] if bu["name"].lower() == self._buname.lower())
 
     async def async_get_assets(self) -> List[Dict[str, Any]]:
         url = f"{API_URL}/assets?buIds={self._bu['id']}"
-        return (await self._session.get(url, headers=self._headers)).json()
+        async with self._session.get(url, headers=self._headers) as resp:
+            return await resp.json()
 
 STATUS_MAP = {
     "ready": "Einsatzbereit",
