@@ -1,62 +1,17 @@
-"""THW Stein – Home Assistant integration entry file."""
-from __future__ import annotations
-
 import logging
-from datetime import timedelta
-
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from aiohttp import ClientSession
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from .const import (
-    DOMAIN,
-    DEFAULT_SCAN_INTERVAL,
-    
-    
-    CONF_BUNAME,
-    CONF_SCAN_INTERVAL,
-)
-from .api import SteinClient, SteinError
+from .api import SteinClient
+from .const import DOMAIN, CONF_API_KEY, CONF_BU_ID
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS = ["sensor"]
-
-
-async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    """Minimal setup – UI configuration only."""
-    return True
-
-
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up THW Stein from a config entry."""
-    session = async_get_clientsession(hass)
-    client = SteinClient(entry.data[CONF_BUNAME], api_key=entry.data[CONF_API_KEY], session=session)
-    _LOGGER.debug('THW Stein login params: username=%s buname=%s', entry.data.get(CONF_USERNAME), entry.data.get(CONF_BUNAME))
-
-    # Login once
-    await client.login()
-
-    async def _update():
-        try:
-            return await client.async_get_assets()
-        except SteinError as exc:
-            raise UpdateFailed(exc) from exc
-
-    coordinator = DataUpdateCoordinator(
-        hass,
-        _LOGGER,
-        name="Stein Assets",
-        update_method=_update,
-        update_interval=timedelta(seconds=entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)),
-    )
-    await coordinator.async_config_entry_first_refresh()
-
-    hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {
-        "client": client,
-        "coordinator": coordinator,
-    }
-
-    hass.config_entries.async_setup_platforms(entry, PLATFORMS)
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
+    session = ClientSession()
+    api_key = entry.data[CONF_API_KEY]
+    bu_id = int(entry.data[CONF_BU_ID])
+    client = SteinClient(bu_id=bu_id, api_key=api_key, session=session)
+    hass.data.setdefault(DOMAIN, {})[entry.entry_id] = client
     return True

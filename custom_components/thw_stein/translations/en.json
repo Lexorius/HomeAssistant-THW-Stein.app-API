@@ -1,15 +1,8 @@
 {
-  "title": "THW Stein",
   "config": {
     "step": {
       "user": {
-        "title": "Connect to Stein.APP",
-        "description": "Enter your API key and unit name.",
-        "data": {
-          "api_key": "API Key",
-          "buname": "Unit (e.g. ov-heilbronn)",
-          "scan_interval": "Scan interval (seconds)"
-        }
+        "title": "Configure THW Stein"
       }
     }
   }

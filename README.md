@@ -1,82 +1,21 @@
-# THW Stein – Home Assistant Custom Integration (HACS)
+# THW Stein – Home Assistant Custom Integration
 
-*Display vehicle & asset status from THW Stein.APP directly in Home Assistant.*
+Integration zur Anzeige von Assets/Fahrzeugen aus der Stein.APP im Home Assistant.
 
-> ⚠️ Diese Integration nutzt die **inoffizielle API** der THW Stein.APP. Dieses Projekt steht in **keiner offiziellen Verbindung zum THW**.
+## Version 0.2.5
 
----
+- Umstellung auf Bearer-Token-Authentifizierung
+- Nutzung der `bu_id` direkt statt OV-Namen
+- Zugriff über API: `/assets/?buIds=…` und `/assets/<id>`
 
-## Version 0.2.1 (Juli 2025)
-API Key hinzugefügt
-OU muss zahl sein.
----
+## Einrichtung
 
-## Funktionen
-- Automatische Anzeige aller Fahrzeuge und Assets einer Organisationseinheit (z. B. OV)
-- Statusanzeige pro Entity: `Einsatzbereit`, `In Wartung`, `Nicht einsatzbereit`, ...
-- Anzeige von Attributen wie Kennzeichen, Kategorie und letzte Änderung
-- Einrichtung komplett über die Benutzeroberfläche (Config Flow)
-- Unterstützt Anpassung des Scan-Intervalls
+Füge die Integration über HACS oder manuell ein.
+Konfiguriert wird:
 
----
+- API-Key (Bearer Token)
+- BU-ID (numerisch)
 
-## Installation
-### Variante A: HACS (empfohlen)
-1. Füge dieses GitHub-Repo zu HACS als benutzerdefiniertes Repository hinzu:  
-   `https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API`
-2. Suche in HACS nach "THW Stein" und installiere es.
-3. Starte Home Assistant neu.
-4. Füge die Integration über Einstellungen → Geräte & Dienste → „+“ hinzu.
+## Quelle
 
-### Variante B: Manuell
-1. Lade das ZIP von [GitHub Releases](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases).
-2. Entpacke es nach `config/custom_components/thw_stein/`.
-3. Starte Home Assistant neu.
-4. Füge die Integration über die UI hinzu.
-
----
-
-## Repository‑Struktur
-```
-.
-├── README.md
-├── CHANGELOG.md
-├── hacs.json
-├── icon.png
-└── custom_components/
-    └── thw_stein/
-        ├── __init__.py
-        ├── api.py
-        ├── sensor.py
-        ├── config_flow.py
-        ├── const.py
-        ├── manifest.json
-        └── translations/
-```
-
----
-
-## Quellen
-- [steinapi (Python API Connector)](https://github.com/oscarminus/steinapi)
-- [stoned_hermine (Änderungs-Tracker für Stein.APP)](https://github.com/peacekiller/stoned_hermine)
-- [DIVERA 24/7](https://www.divera247.de/) – externe Software zur Einsatzkoordination
-
----
-
-## Lizenz
-[MIT License](LICENSE)
-
-© 2025 [@lexorius](https://github.com/lexorius)
-
----
-
-## Einrichtung – Felder erklärt
-
-Beim Hinzufügen der Integration wirst du nach folgenden Informationen gefragt:
-
-- **Benutzername:** Dein Benutzername aus der Stein.APP (meist E-Mail-Adresse)
-- **Passwort:** Dein Stein.APP-Passwort
-- **Einheit / Benutzername (OV-Name):** Interner Name deiner Einheit, z. B. `ov-heilbronn`
-- **Scan-Intervall:** (optional) Wie oft die Daten in Sekunden aktualisiert werden sollen (Standard: 300)
-
-Falls du dir unsicher bist, kannst du dich parallel in der offiziellen App einloggen und in der URL den OV-Namen ablesen.
+Basierend auf der API von [steinapi](https://github.com/oscarminus/steinapi)
