@@ -1,8 +1,8 @@
 {
   "domain": "thw_stein",
   "name": "THW Stein",
-  "version": "0.1.0",
-  "documentation": "https://github.com/YOUR_GH_USER/thw_stein",
+  "version": "0.0.1",
+  "documentation": "https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API",
   "requirements": ["httpx>=0.27.0", "python-dateutil>=2.9.0"],
   "codeowners": ["@YOUR_GH_USER"],
   "iot_class": "cloud_polling"
