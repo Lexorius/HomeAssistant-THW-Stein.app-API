@@ -1,10 +1,20 @@
 # Changelog
+
 ## 0.1.0
-* Added full docstrings & inline comments for maintainability
-* Ensured constants only represent key names (not values)
-* Clean options flow and sensor update handling
+* Dokumentation und Code-Kommentare vollständig ergänzt
+* UI-Optionen integriert (ConfigFlow, OptionsFlow)
+* Code vollständig asynchronisiert (aiohttp statt httpx)
+* Bugfix: `X-API-KEY` Extraction robuster gemacht
 
 ## 0.0.8
-* Added missing constants and modules
+* Fehlende Konstanten ergänzt
+* `sensor.py` und `config_flow.py` wieder hinzugefügt
+
 ## 0.0.7
-* Robust regex for API key extraction
+* Regex für `X-API-KEY` korrigiert (PatternError behoben)
+
+## 0.0.6
+* Fehlerhafte API-Initialisierung korrigiert
+
+## 0.0.5
+* Initialer Release mit Basis-Funktionalität
