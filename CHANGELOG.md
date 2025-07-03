@@ -1,3 +1,6 @@
+## 0.1.2
+* Fix für `IndentationError` in `config_flow.py`
+
 ## 0.1.1
 * Added multi-pattern API-key extraction
 * OptionsFlow deprecation fix
