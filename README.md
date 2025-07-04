@@ -3,7 +3,6 @@
 [release-url]: https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases
 [release-badge]: https://img.shields.io/github/v/release/Lexorius/HomeAssistant-THW-Stein.app-APIy?style=flat-square
 
-<img src="blob:https://github.com/8850e302-3be4-4d3c-a3bc-bd836f751e4e" width="120">
 # Info: Dies ist ein Privates Projekt. Es hat nichts mit dem THW zu tun.
 
 # Benutzung auf eigene Verantwortung. 
