@@ -45,7 +45,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         self._attr_unique_id = f"stein_{self._asset_id}"
         self._attr_name = self._compose_name(asset)
         raw_status = asset.get("status")
-        self._attr_state = STATUS_MAP.get(raw_status)
+        self._attr_native_value = STATUS_MAP.get(raw_status)
         self._attr_extra_state_attributes = {
             "label": asset.get("label"),
             "status": STATUS_MAP.get(raw_status),
