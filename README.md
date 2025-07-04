@@ -2,7 +2,7 @@
 
 Displays vehicle and asset status from **Stein.APP** directly in Home Assistant.
 
-**Version 0.2.7** – 2025-07-03
+**Version 0.3.0b** – 2025-07-04
 
 ---
 
