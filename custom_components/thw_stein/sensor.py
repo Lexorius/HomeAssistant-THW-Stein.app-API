@@ -63,7 +63,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "last_modified_by": asset.get("lastModifiedBy"),
             "bu_id": asset.get("buId"),
             "group_id": asset.get("groupId"),
-            "radioName": asset.get("radioName),
+            "radioName": asset.get("radioName"),
             "issi": asset.get("issi"),
             "operationReservation": asset.get("operationReservation"),                              
             "operationReservationText": EINSATZVORBEHALT.get(raw_einsatzvorbehalt),    
