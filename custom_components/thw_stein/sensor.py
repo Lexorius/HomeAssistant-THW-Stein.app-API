@@ -69,22 +69,22 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "operationReservationText": EINSATZVORBEHALT.get(raw_einsatzvorbehalt),    
         }
 
-//  "buId": 0,
-//  "groupId": 0,
-//  "id": 0,
-//  "label": "",
-//  "name": "string",
-//  "status": "ready",
-//  "comment": "string",
-//  "category": "string",
-//  "deleted": false,
-//  "lastModified": "2019-08-24T14:15:22Z",
-//  "created": "2019-08-24T14:15:22Z",
-//  "lastModifiedBy": "string",
-//  "radioName": "string",
-//  "issi": "string",
-//  "sortOrder": 0,
-//  "operationReservation": false    
+#//  "buId": 0,
+#//  "groupId": 0,
+#//  "id": 0,
+#//  "label": "",
+#//  "name": "string",
+#//  "status": "ready",
+#//  "comment": "string",
+#//  "category": "string",
+#//  "deleted": false,
+#//  "lastModified": "2019-08-24T14:15:22Z",
+#//  "created": "2019-08-24T14:15:22Z",
+#//  "lastModifiedBy": "string",
+#//  "radioName": "string",
+#//  "issi": "string",
+#//  "sortOrder": 0,
+#//  "operationReservation": false    
 
     async def _handle_coordinator_update(self):
         for asset in self.coordinator.data:
