@@ -35,10 +35,12 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
     @staticmethod
     def _compose_name(asset) -> str:
         parts = [asset.get("label")]
-        if asset.get("name"):
-            parts.append(asset["name"])
         if asset.get("radioName"):
+            parts.append(' / ')
             parts.append(asset["radioName"])
+        if asset.get("name"):
+            parts.append(' / ')
+            parts.append(asset["name"])
         return " ".join(filter(None, parts))
 
     def _update_from_asset(self, asset):
@@ -52,9 +54,30 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "comment": asset.get("comment"),
             "category": asset.get("category"),
             "last_modified": asset.get("lastModified"),
+            "last_modified_by": asset.get("lastModifiedBy"),
             "bu_id": asset.get("buId"),
             "group_id": asset.get("groupId"),
+            "radioName": asset.get("radioName),
+            "issi": asset.get("issi"),
+            "operationReservation": asset.get("operationReservation"),                              
         }
+
+//  "buId": 0,
+//  "groupId": 0,
+//  "id": 0,
+//  "label": "",
+//  "name": "string",
+//  "status": "ready",
+//  "comment": "string",
+//  "category": "string",
+//  "deleted": false,
+//  "lastModified": "2019-08-24T14:15:22Z",
+//  "created": "2019-08-24T14:15:22Z",
+//  "lastModifiedBy": "string",
+//  "radioName": "string",
+//  "issi": "string",
+//  "sortOrder": 0,
+//  "operationReservation": false    
 
     async def _handle_coordinator_update(self):
         for asset in self.coordinator.data:
