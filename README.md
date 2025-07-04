@@ -1,4 +1,15 @@
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square)](https://github.com/hacs/integration)
+[![release][release-badge]][release-url]
+
+
 # THW Stein – Home Assistant Custom Integration (HACS)
+[release-url]: https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases
+[release-badge]: https://img.shields.io/github/v/release/lexorius/HomeAssistant-THW-Stein.app-APIy?style=flat-square
+
+![](icon.png?raw=true)
+# Info: Dies ist ein Privates Projekt. Es hat nichts mit dem THW zu tun.
+
+# Benutzung auf eigene Verantwortung. 
 
 Displays vehicle and asset status from **Stein.APP** directly in Home Assistant.
 
