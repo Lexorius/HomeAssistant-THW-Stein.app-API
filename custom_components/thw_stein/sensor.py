@@ -15,6 +15,11 @@ STATUS_MAP = {
     "notready": "Nicht einsatzbereit",
 }
 
+EINSATZVORBEHALT = {
+    "true":"Fahrzeug ist unter Einsatzvorbehalt",
+    "false":"",
+}
+
 async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
@@ -47,6 +52,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         self._attr_unique_id = f"stein_{self._asset_id}"
         self._attr_name = self._compose_name(asset)
         raw_status = asset.get("status")
+        raw_einsatzvorbehalt = asset.get("operationReservation")
         self._attr_native_value = STATUS_MAP.get(raw_status)
         self._attr_extra_state_attributes = {
             "label": asset.get("label"),
@@ -60,6 +66,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "radioName": asset.get("radioName),
             "issi": asset.get("issi"),
             "operationReservation": asset.get("operationReservation"),                              
+            "operationReservationText": EINSATZVORBEHALT.get(raw_einsatzvorbehalt),    
         }
 
 //  "buId": 0,
