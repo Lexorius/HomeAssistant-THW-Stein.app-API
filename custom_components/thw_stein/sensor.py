@@ -16,8 +16,8 @@ STATUS_MAP = {
 }
 
 EINSATZVORBEHALT = {
-    "true":"Fahrzeug ist unter Einsatzvorbehalt",
-    "false":"",
+    "true": "Fahrzeug ist unter Einsatzvorbehalt",
+    "false": ' ',
 }
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -55,7 +55,9 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         raw_einsatzvorbehalt = asset.get("operationReservation")
         self._attr_native_value = STATUS_MAP.get(raw_status)
         self._attr_extra_state_attributes = {
+            "name": asset.get("name"),
             "label": asset.get("label"),
+            "id": asset.get("id"),
             "status": STATUS_MAP.get(raw_status),
             "comment": asset.get("comment"),
             "category": asset.get("category"),
