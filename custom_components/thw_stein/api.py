@@ -29,6 +29,14 @@ class SteinClient:
                 raise SteinError(f"Asset list HTTP {resp.status}")
             return await resp.json()
 
+    async def async_get_bu(self) -> List[Dict[str, Any]]:
+        url = f"{self.BASE_URL}/bu"
+        async with self._session.get(url, headers=self._headers) as resp:
+            if resp.status != 200:
+                raise SteinError(f"Asset list HTTP {resp.status}")
+            return await resp.json()
+
+    
     async def async_get_asset_detail(self, asset_id: int) -> Dict[str, Any]:
         url = f"{self.BASE_URL}/assets/{asset_id}"
         async with self._session.get(url, headers=self._headers) as resp:
