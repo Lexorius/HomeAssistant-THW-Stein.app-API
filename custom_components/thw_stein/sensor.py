@@ -41,11 +41,15 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
     def _compose_name(asset) -> str:
         parts = [asset.get("label")]
         if asset.get("radioName"):
-            parts.append(' / ')
+            parts.append(' - ')
             parts.append(asset["radioName"])
         if asset.get("name"):
-            parts.append(' / ')
+            parts.append(' - ')
             parts.append(asset["name"])
+
+        if asset.get("category"):
+            parts.append(' - ')
+            parts.append(asset["category"])            
         return " ".join(filter(None, parts))
 
     def _update_from_asset(self, asset):
