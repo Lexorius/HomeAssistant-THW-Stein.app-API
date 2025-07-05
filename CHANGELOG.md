@@ -1,3 +1,6 @@
+## 0.4.0
+* unter Einsatzvorbehalt - eingefügt.
+
 ## 0.3.7
 * def _handle_coordinator_update(self)  aktualisiert
 

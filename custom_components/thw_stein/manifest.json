@@ -1,7 +1,7 @@
 {
   "domain": "thw_stein",
   "name": "THW Stein",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "documentation": "https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API",
   "issue_tracker": "https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/issues",
   "requirements": [
