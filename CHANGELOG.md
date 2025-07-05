@@ -1,3 +1,6 @@
+## 0.3.7
+* def _handle_coordinator_update(self)  aktualisiert
+
 ## 0.3.6
 * changelog korrigiert.
 * Sensor naming reworked
