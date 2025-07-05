@@ -1,8 +1,7 @@
 
 # THW Stein – Home Assistant Custom Integration (HACS)
-[release-url]: https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases
-[release-badge]: https://img.shields.io/github/v/release/Lexorius/HomeAssistant-THW-Stein.app-APIy?style=flat-square
 
+![](icon.png)
 # Info: Dies ist ein Privates Projekt. Es hat nichts mit dem THW zu tun.
 
 # Benutzung auf eigene Verantwortung. 
