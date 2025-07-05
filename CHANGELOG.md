@@ -1,3 +1,6 @@
+## 3.0.4
+* my stupidity with the manifest.json.... 
+
 ## 3.0.1b 
 * set default time to sync to 60 sec
 * deleted the get_asset_detail - not needeed - 
