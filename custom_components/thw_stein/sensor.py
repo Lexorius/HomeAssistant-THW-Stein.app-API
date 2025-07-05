@@ -95,9 +95,17 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
 #//  "sortOrder": 0,
 #//  "operationReservation": false    
 
-    async def _handle_coordinator_update(self):
+#    async def _handle_coordinator_update(self):
+#        for asset in self.coordinator.data:
+#            if asset["id"] == self._asset_id:
+#                self._update_from_asset(asset)
+#                break
+#        await super()._handle_coordinator_update()
+
+
+    def _handle_coordinator_update(self) -> None:
         for asset in self.coordinator.data:
             if asset["id"] == self._asset_id:
                 self._update_from_asset(asset)
                 break
-        await super()._handle_coordinator_update()
+        self.async_write_ha_state()  # Zustand aktualisieren
