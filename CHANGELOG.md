@@ -1,7 +1,11 @@
-## 3.0.4
+## 0.3.6
+* changelog korrigiert.
+* Sensor naming reworked
+
+## 0.3.4
 * my stupidity with the manifest.json.... 
 
-## 3.0.1b 
+## 0.3.1b 
 * set default time to sync to 60 sec
 * deleted the get_asset_detail - not needeed - 
 
