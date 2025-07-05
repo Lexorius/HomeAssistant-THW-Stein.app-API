@@ -53,8 +53,11 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
         return " ".join(filter(None, parts))
 
     def _update_from_asset(self, asset):
-        self._attr_unique_id = f"stein_{self._asset_id}"
-        self._attr_name = self._compose_name(asset)
+        slug = self._compose_name(asset).lower().replace(" ", "_").replace("/", "_")
+        self._attr_unique_id = f"stein_app_{self._asset_id}"
+        self._attr_name = f"stein_app_{slug}" 
+        #self._attr_unique_id = f"stein_{self._asset_id}"
+        #self._attr_name = self._compose_name(asset)
         raw_status = asset.get("status")
         raw_einsatzvorbehalt = asset.get("operationReservation")
         self._attr_native_value = STATUS_MAP.get(raw_status)
