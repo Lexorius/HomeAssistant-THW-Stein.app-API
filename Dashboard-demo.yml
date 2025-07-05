@@ -1,0 +1,271 @@
+/* USES auto-entities and mod_card ----  Stein Entities are labeled with "stein_app" */
+title: THW Stein
+views:
+  - title: Übersicht
+    path: uebersicht
+    icon: mdi:castle
+    cards:
+      - type: heading
+        icon: mdi:car
+        heading: Fahrzeuge
+        heading_style: title
+      - type: custom:auto-entities
+        card:
+          square: false
+          type: grid
+          columns: 1
+        card_param: cards
+        filter:
+          include:
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #005f00; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Einsatzbereit
+              attributes:
+                group_id: 1
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #5f0000; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Nicht einsatzbereit
+              attributes:
+                group_id: 1
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #00005f; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Im Einsatz
+              attributes:
+                group_id: 1
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #aaaaaa; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: In Wartung
+              attributes:
+                group_id: 1
+              sort:
+                method: attribute
+                attribute: category
+          exclude: []
+        sort:
+          method: attribute
+          attribute: category
+      - type: heading
+        icon: mdi:caravan
+        heading: Anhänger
+        heading_style: title
+      - type: custom:auto-entities
+        card:
+          type: grid
+          columns: 1
+          square: false
+        card_param: cards
+        filter:
+          include:
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #005f00; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Einsatzbereit
+              attributes:
+                group_id: 5
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #5f0000; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Nicht einsatzbereit
+              attributes:
+                group_id: 5
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #00005f; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Im Einsatz
+              attributes:
+                group_id: 5
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #aaaaaa; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: In Wartung
+              attributes:
+                group_id: 5
+              sort:
+                method: attribute
+                attribute: category
+          exclude: []
+        sort:
+          method: attribute
+          attribute: category
+      - type: heading
+        icon: mdi:tools
+        heading: Zubehör
+        heading_style: title
+      - type: custom:auto-entities
+        card:
+          type: grid
+          columns: 1
+          square: false
+        card_param: cards
+        filter:
+          include:
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #005f00; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Einsatzbereit
+              attributes:
+                group_id: 2
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #5f0000; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Nicht einsatzbereit
+              attributes:
+                group_id: 2
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #00005f; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: Im Einsatz
+              attributes:
+                group_id: 2
+              sort:
+                method: attribute
+                attribute: category
+            - options:
+                type: entity
+                card_mod:
+                  style: |
+                    ha-card {
+                       background-color: #aaaaaa; /* Default background */
+                     }
+                     .card-header, .name, .entity__info, .info {
+                      color: #fff !important;   /* Grün */
+                      font-size: 23px !important;
+                    }
+              label: stein_app
+              state: In Wartung
+              attributes:
+                group_id: 2
+              sort:
+                method: attribute
+                attribute: category
+          exclude: []
+        sort:
+          method: attribute
+          attribute: category
