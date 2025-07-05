@@ -6,4 +6,4 @@ CONF_API_KEY = "api_key"
 CONF_BU_ID = "bu_id"
 CONF_SCAN_INTERVAL = "scan_interval"
 
-DEFAULT_SCAN_INTERVAL = 300  # seconds
+DEFAULT_SCAN_INTERVAL = 60  # seconds

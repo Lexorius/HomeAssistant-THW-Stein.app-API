@@ -1,3 +1,7 @@
+## 3.0.1b 
+* set default time to sync to 60 sec
+* deleted the get_asset_detail - not needeed - 
+
 ## 0.2.7
 * Added per‑asset sensors with status & attributes
 * Updated README and manifest

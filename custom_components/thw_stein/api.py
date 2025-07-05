@@ -35,11 +35,3 @@ class SteinClient:
             if resp.status != 200:
                 raise SteinError(f"Asset list HTTP {resp.status}")
             return await resp.json()
-
-    
-    async def async_get_asset_detail(self, asset_id: int) -> Dict[str, Any]:
-        url = f"{self.BASE_URL}/assets/{asset_id}"
-        async with self._session.get(url, headers=self._headers) as resp:
-            if resp.status != 200:
-                raise SteinError(f"Asset {asset_id} HTTP {resp.status}")
-            return await resp.json()

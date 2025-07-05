@@ -9,7 +9,7 @@
 
 Displays vehicle and asset status from **Stein.APP** directly in Home Assistant.
 
-**Version 0.3.0b** – 2025-07-04
+**Version 0.3.1b** – 2025-07-04 
 
 ---
 
@@ -56,5 +56,3 @@ Example: `FGr Kommunikation` → **State**: `Einsatzbereit`
 * `GET https://stein.app/api/api/ext/assets/<asset_id>` – detail (reserved for future attributes)
 
 ---
-
-## Changelog
