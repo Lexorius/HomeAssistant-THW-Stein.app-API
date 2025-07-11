@@ -1,9 +1,14 @@
-
-[![hacs][hacs-img]][hacs-url] [![GitHub Release][github-release-img]][github-release-url] [![Downloads][github-downloads-img]][github-release-url] [![Downloads@latest][github-latest-downloads-img]][github-release-url]
-
-
-
 # THW Stein – Home Assistant Custom Integration (HACS)
+
+
+[![GitHub Release](https://img.shields.io/github/v/release/Lexorius/HomeAssistant-THW-Stein.app-API?sort=semver&style=for-the-badge&color=green)](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/Lexorius/HomeAssistant-THW-Stein.app-API?style=for-the-badge&color=green)](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/releases)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/Lexorius/HomeAssistant-THW-Stein.app-API/latest/total?style=for-the-badge&label=Downloads%20latest%20Release)
+![HA Analytics](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fanalytics.home-assistant.io%2Fcustom_integrations.json&query=%.total&style=for-the-badge&label=Active%20Installations&color=red)
+[![hacs](https://img.shields.io/badge/HACS-Integration-blue.svg?style=for-the-badge)](https://github.com/hacs/integration)
+
+
+## Overview
 
 ![](icon.png)
 # Info: Dies ist ein Privates Projekt. Es hat nichts mit dem THW zu tun.
