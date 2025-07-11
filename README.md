@@ -1,4 +1,7 @@
 
+[![hacs][hacs-img]][hacs-url] [![GitHub Release][github-release-img]][github-release-url] [![Downloads][github-downloads-img]][github-release-url] [![Downloads@latest][github-latest-downloads-img]][github-release-url]
+
+
 # THW Stein – Home Assistant Custom Integration (HACS)
 
 ![](icon.png)
