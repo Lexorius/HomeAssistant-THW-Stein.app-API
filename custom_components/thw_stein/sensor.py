@@ -106,6 +106,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "bu_id": asset.get("buId"),
             "group_id": asset.get("groupId"),
             "issi": asset.get("issi"),
+            "huValidUntil": asset.get("huValidUntil"),
             "operation_reservation": asset.get("operationReservation"),
             "operation_reservation_text": EINSATZVORBEHALT[
                 asset.get("operationReservation")
