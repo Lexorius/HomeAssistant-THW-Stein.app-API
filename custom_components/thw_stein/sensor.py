@@ -2,11 +2,12 @@
 
 Erzeugt:
 * pro Asset einen Sensor mit Status & Attributen
-* State = übersetzter Status (+ Zusatz „Unter Einsatzvorbehalt“)
+* State = übersetzter Status (+ Zusatz „Unter Einsatzvorbehalt")
 * Entity-ID beginnt mit stein_app_<asset_id>
 """
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -62,7 +63,7 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
     @staticmethod
     def _compose_name(asset) -> str:
         """Label, RadioName & Name in einer Zeile zusammenführen."""
-        parts = [asset.get("label")]          # z. B. „FGr Kommunikation“
+        parts = [asset.get("label")]          # z. B. „FGr Kommunikation"
         if asset.get("radioName"):            # Funkrufname?
             parts.append("-")
             parts.append(asset["radioName"])
@@ -73,6 +74,46 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             parts.append("-")
             parts.append(asset["category"])
         return " ".join(filter(None, parts))
+
+    # ---------- Hilfsfunktion: HU-Restlaufzeit berechnen ---------- #
+    @staticmethod
+    def _calculate_hu_remaining_hours(hu_valid_until) -> int | None:
+        """Berechnet die verbleibenden Stunden bis zum HU-Ablaufdatum.
+        
+        Args:
+            hu_valid_until: ISO-8601 Datumsstring oder None
+            
+        Returns:
+            Anzahl der verbleibenden Stunden als Integer oder None bei Fehler
+        """
+        if not hu_valid_until:
+            return None
+            
+        try:
+            # Parse das HU-Ablaufdatum (erwartet ISO-8601 Format)
+            # Beispielformate: "2024-12-31T23:59:59Z" oder "2024-12-31"
+            if 'T' in hu_valid_until:
+                # Vollständiges ISO-8601 Format mit Zeit
+                hu_date = datetime.fromisoformat(hu_valid_until.replace('Z', '+00:00'))
+            else:
+                # Nur Datum, füge Zeit hinzu (Ende des Tages)
+                hu_date = datetime.fromisoformat(f"{hu_valid_until}T23:59:59+00:00")
+            
+            # Aktuelle Zeit (mit Zeitzone)
+            now = datetime.now(timezone.utc)
+            
+            # Differenz berechnen
+            time_delta = hu_date - now
+            
+            # In Stunden umrechnen (abrunden auf ganze Stunden)
+            remaining_hours = int(time_delta.total_seconds() / 3600)
+            
+            # Negative Werte bedeuten abgelaufen
+            return remaining_hours
+            
+        except (ValueError, TypeError) as e:
+            # Bei Parsing-Fehlern None zurückgeben
+            return None
 
     # -------------- Daten aus Asset-Dict → Entity ------------------ #
     def _update_from_asset(self, asset):
@@ -92,6 +133,25 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             status_text += " (Unter Einsatzvorbehalt)"
         self._attr_native_value = status_text
 
+        # HU-Restlaufzeit berechnen
+        hu_valid_until = asset.get("huValidUntil")
+        hu_remaining_hours = self._calculate_hu_remaining_hours(hu_valid_until)
+        
+        # HU-Status Text erstellen
+        hu_status_text = None
+        if hu_remaining_hours is not None:
+            if hu_remaining_hours < 0:
+                hu_status_text = f"HU abgelaufen seit {abs(hu_remaining_hours)} Stunden"
+            elif hu_remaining_hours < 24:
+                hu_status_text = f"HU läuft in {hu_remaining_hours} Stunden ab"
+            elif hu_remaining_hours < 168:  # 7 Tage
+                days = hu_remaining_hours // 24
+                hours = hu_remaining_hours % 24
+                hu_status_text = f"HU läuft in {days} Tagen und {hours} Stunden ab"
+            else:
+                days = hu_remaining_hours // 24
+                hu_status_text = f"HU läuft in {days} Tagen ab"
+
         # ----- Attribute (werden im Entwickler-Tool angezeigt) ----- #
         self._attr_extra_state_attributes = {
             "id": asset.get("id"),
@@ -106,10 +166,12 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "bu_id": asset.get("buId"),
             "group_id": asset.get("groupId"),
             "issi": asset.get("issi"),
-            "huValidUntil": asset.get("huValidUntil"),
+            "huValidUntil": hu_valid_until,
+            "hu_remaining_hours": hu_remaining_hours,
+            "hu_status": hu_status_text,
             "operation_reservation": asset.get("operationReservation"),
             "operation_reservation_text": EINSATZVORBEHALT[
-                asset.get("operationReservation")
+                asset.get("operationReservation", False)  # Default False für sicheren Zugriff
             ],
         }
 
