@@ -75,45 +75,71 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             parts.append(asset["category"])
         return " ".join(filter(None, parts))
 
-    # ---------- Hilfsfunktion: HU-Restlaufzeit berechnen ---------- #
+    # ---------- Hilfsfunktion: Restlaufzeit berechnen ---------- #
     @staticmethod
-    def _calculate_hu_remaining_hours(hu_valid_until) -> int | None:
-        """Berechnet die verbleibenden Stunden bis zum HU-Ablaufdatum.
-        
+    def _calculate_remaining_hours(valid_until) -> int | None:
+        """Berechnet die verbleibenden Stunden bis zu einem Ablaufdatum.
+
+        Wird sowohl für HU (Hauptuntersuchung) als auch für
+        SP (Sicherheitsprüfung) verwendet.
+
         Args:
-            hu_valid_until: ISO-8601 Datumsstring oder None
-            
+            valid_until: ISO-8601 Datumsstring oder None
+
         Returns:
             Anzahl der verbleibenden Stunden als Integer oder None bei Fehler
         """
-        if not hu_valid_until:
+        if not valid_until:
             return None
-            
+
         try:
-            # Parse das HU-Ablaufdatum (erwartet ISO-8601 Format)
+            # Parse das Ablaufdatum (erwartet ISO-8601 Format)
             # Beispielformate: "2024-12-31T23:59:59Z" oder "2024-12-31"
-            if 'T' in hu_valid_until:
+            if 'T' in valid_until:
                 # Vollständiges ISO-8601 Format mit Zeit
-                hu_date = datetime.fromisoformat(hu_valid_until.replace('Z', '+00:00'))
+                end_date = datetime.fromisoformat(valid_until.replace('Z', '+00:00'))
             else:
                 # Nur Datum, füge Zeit hinzu (Ende des Tages)
-                hu_date = datetime.fromisoformat(f"{hu_valid_until}T23:59:59+00:00")
-            
+                end_date = datetime.fromisoformat(f"{valid_until}T23:59:59+00:00")
+
             # Aktuelle Zeit (mit Zeitzone)
             now = datetime.now(timezone.utc)
-            
+
             # Differenz berechnen
-            time_delta = hu_date - now
-            
+            time_delta = end_date - now
+
             # In Stunden umrechnen (abrunden auf ganze Stunden)
             remaining_hours = int(time_delta.total_seconds() / 3600)
-            
+
             # Negative Werte bedeuten abgelaufen
             return remaining_hours
-            
-        except (ValueError, TypeError) as e:
+
+        except (ValueError, TypeError):
             # Bei Parsing-Fehlern None zurückgeben
             return None
+
+    # ---------- Hilfsfunktion: Statustext formatieren ---------- #
+    @staticmethod
+    def _format_remaining_status(remaining_hours, prefix: str) -> str | None:
+        """Formatiert die Restlaufzeit als lesbaren Text.
+
+        Args:
+            remaining_hours: verbleibende Stunden (int) oder None
+            prefix: Kürzel, z. B. "HU" oder "SP"
+        """
+        if remaining_hours is None:
+            return None
+
+        if remaining_hours < 0:
+            return f"{prefix} abgelaufen seit {abs(remaining_hours)} Stunden"
+        if remaining_hours < 24:
+            return f"{prefix} läuft in {remaining_hours} Stunden ab"
+        if remaining_hours < 168:  # 7 Tage
+            days = remaining_hours // 24
+            hours = remaining_hours % 24
+            return f"{prefix} läuft in {days} Tagen und {hours} Stunden ab"
+        days = remaining_hours // 24
+        return f"{prefix} läuft in {days} Tagen ab"
 
     # -------------- Daten aus Asset-Dict → Entity ------------------ #
     def _update_from_asset(self, asset):
@@ -135,22 +161,13 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
 
         # HU-Restlaufzeit berechnen
         hu_valid_until = asset.get("huValidUntil")
-        hu_remaining_hours = self._calculate_hu_remaining_hours(hu_valid_until)
-        
-        # HU-Status Text erstellen
-        hu_status_text = None
-        if hu_remaining_hours is not None:
-            if hu_remaining_hours < 0:
-                hu_status_text = f"HU abgelaufen seit {abs(hu_remaining_hours)} Stunden"
-            elif hu_remaining_hours < 24:
-                hu_status_text = f"HU läuft in {hu_remaining_hours} Stunden ab"
-            elif hu_remaining_hours < 168:  # 7 Tage
-                days = hu_remaining_hours // 24
-                hours = hu_remaining_hours % 24
-                hu_status_text = f"HU läuft in {days} Tagen und {hours} Stunden ab"
-            else:
-                days = hu_remaining_hours // 24
-                hu_status_text = f"HU läuft in {days} Tagen ab"
+        hu_remaining_hours = self._calculate_remaining_hours(hu_valid_until)
+        hu_status_text = self._format_remaining_status(hu_remaining_hours, "HU")
+
+        # SP-Restlaufzeit berechnen (Sicherheitsprüfung)
+        sp_valid_until = asset.get("spValidUntil")
+        sp_remaining_hours = self._calculate_remaining_hours(sp_valid_until)
+        sp_status_text = self._format_remaining_status(sp_remaining_hours, "SP")
 
         # ----- Attribute (werden im Entwickler-Tool angezeigt) ----- #
         self._attr_extra_state_attributes = {
@@ -169,6 +186,9 @@ class SteinAssetSensor(CoordinatorEntity, SensorEntity):
             "huValidUntil": hu_valid_until,
             "hu_remaining_hours": hu_remaining_hours,
             "hu_status": hu_status_text,
+            "spValidUntil": sp_valid_until,
+            "sp_remaining_hours": sp_remaining_hours,
+            "sp_status": sp_status_text,
             "operation_reservation": asset.get("operationReservation"),
             "operation_reservation_text": EINSATZVORBEHALT[
                 asset.get("operationReservation", False)  # Default False für sicheren Zugriff
