@@ -17,211 +17,619 @@ views:
         filter:
           include:
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #005f00; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#005f00'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit
               attributes:
                 group_id: 1
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #5f0000; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#5f0000'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit
               attributes:
                 group_id: 1
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #00005f; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#00005f'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz
               attributes:
                 group_id: 1
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #aaaaaa; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#aaaaaa'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung
               attributes:
                 group_id: 1
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #4d4d4d 10px,    /* Grau */
-                        #4d4d4d 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #4d4d4d 10px, #4d4d4d 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit
               attributes:
                 group_id: 1
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #aa3300 10px,    /* Grau */
-                        #aa4400 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #aa3300 10px, #aa4400 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 1
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 1
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #005f00,         
-                        #005f00 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #005f00, #005f00 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 1
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #0000ff,         
-                        #0000ff 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #0000ff, #0000ff 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 1
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #000000,         
-                        #ff0000 10px,
-                        #333300 10px,    /* Grau */
-                        #003300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #000000, #ff0000 10px,
+                        #333300 10px, #003300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
@@ -243,211 +651,619 @@ views:
         filter:
           include:
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #005f00; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#005f00'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit
               attributes:
                 group_id: 5
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #5f0000; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#5f0000'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit
               attributes:
                 group_id: 5
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #00005f; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#00005f'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz
               attributes:
                 group_id: 5
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #aaaaaa; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#aaaaaa'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung
               attributes:
                 group_id: 5
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #4d4d4d 10px,    /* Grau */
-                        #4d4d4d 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #4d4d4d 10px, #4d4d4d 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit
               attributes:
                 group_id: 5
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #aa3300 10px,    /* Grau */
-                        #aa4400 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #aa3300 10px, #aa4400 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 5
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 5
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #005f00,         
-                        #005f00 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #005f00, #005f00 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 5
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #0000ff,         
-                        #0000ff 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #0000ff, #0000ff 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 5
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #000000,         
-                        #ff0000 10px,
-                        #333300 10px,    /* Grau */
-                        #003300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #000000, #ff0000 10px,
+                        #333300 10px, #003300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
@@ -469,211 +1285,619 @@ views:
         filter:
           include:
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #005f00; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#005f00'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit
               attributes:
                 group_id: 2
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #5f0000; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#5f0000'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit
               attributes:
                 group_id: 2
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #00005f; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#00005f'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz
               attributes:
                 group_id: 2
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background-color: #aaaaaa; /* Default background */
-                     }
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background-color: '#aaaaaa'
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung
               attributes:
                 group_id: 2
-              sort:
-                method: attribute
-                attribute: category
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #4d4d4d 10px,    /* Grau */
-                        #4d4d4d 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #4d4d4d 10px, #4d4d4d 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit
               attributes:
                 group_id: 2
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #aa3300 10px,    /* Grau */
-                        #aa4400 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #aa3300 10px, #aa4400 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Bedingt einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 2
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #003300,         /* Dunkelgrün */
-                        #003300 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #003300, #003300 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: In Wartung (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 2
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #005f00,         
-                        #005f00 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #005f00, #005f00 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 2
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #0000ff,         
-                        #0000ff 10px,
-                        #333300 10px,    /* Grau */
-                        #333300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #0000ff, #0000ff 10px,
+                        #333300 10px, #333300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Im Einsatz (Unter Einsatzvorbehalt)
               attributes:
                 group_id: 2
             - options:
-                type: entity
-                card_mod:
-                  style: |
-                    ha-card {
-                       background: repeating-linear-gradient(
-                        45deg,
-                        #000000,         
-                        #ff0000 10px,
-                        #333300 10px,    /* Grau */
-                        #003300 20px
-                      );
-                      border-radius: 12px;
-                    }
-                     
-                     .card-header, .name, .entity__info, .info {
-                      color: #fff !important;   /* Grün */
-                      font-size: 23px !important;
-                    }
+                type: custom:button-card
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - background: >-
+                        repeating-linear-gradient(45deg, #000000, #ff0000 10px,
+                        #333300 10px, #003300 20px)
+                    - border-radius: 12px
+                    - position: relative
+                    - padding: 16px
+                  name:
+                    - color: white
+                    - font-size: 23px
+                  state:
+                    - color: white
+                    - font-size: 16px
+                  custom_fields:
+                    hu_days:
+                      - position: absolute
+                      - right: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                    sp_days:
+                      - position: absolute
+                      - left: 10px
+                      - bottom: 10px
+                      - color: white
+                      - font-size: 14px
+                      - opacity: 0.9
+                custom_fields:
+                  hu_days: |
+                    [[[
+                      if (entity.attributes.hu_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.hu_remaining_hours / 24);
+                        if (days < 0) return '⚠️ HU abgelaufen';
+                        if (days <= 7) return '🔴 HU: ' + days + 'd';
+                        if (days <= 30) return '🟠 HU: ' + days + 'd';
+                        if (days <= 60) return '🟡 HU: ' + days + 'd';
+                        return 'HU: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
+                  sp_days: |
+                    [[[
+                      if (entity.attributes.sp_remaining_hours != null) {
+                        var days = Math.round(entity.attributes.sp_remaining_hours / 24);
+                        if (days < 0) return '⚠️ SP abgelaufen';
+                        if (days <= 7) return '🔴 SP: ' + days + 'd';
+                        if (days <= 30) return '🟠 SP: ' + days + 'd';
+                        if (days <= 60) return '🟡 SP: ' + days + 'd';
+                        return 'SP: ' + days + 'd';
+                      }
+                      return '';
+                    ]]]
               label: stein_app
               state: Nicht einsatzbereit (Unter Einsatzvorbehalt)
               attributes:
