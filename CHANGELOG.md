@@ -1,3 +1,8 @@
+## 0.6.1
+* `spValidUntil` (Sicherheitsprüfung) analog zu `huValidUntil` hinzugefügt.
+  Neue Attribute: `spValidUntil`, `sp_remaining_hours`, `sp_status`.
+* HU-Restlaufzeit-Helper zu generischer Funktion refactored (wird für HU und SP genutzt).
+
 ## 0.4.0
 * unter Einsatzvorbehalt - eingefügt.
 
