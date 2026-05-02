@@ -1,22 +1,22 @@
 """Integration setup for THW Stein."""
 from __future__ import annotations
+
 import logging
 from datetime import timedelta
-from datetime import datetime, timezone
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
+from .api import SteinClient, SteinError
 from .const import (
-    DOMAIN,
     CONF_API_KEY,
     CONF_BU_ID,
     CONF_SCAN_INTERVAL,
     DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
 )
-from .api import SteinClient, SteinError
 
 _LOGGER = logging.getLogger(__name__)
 PLATFORMS = ["sensor"]

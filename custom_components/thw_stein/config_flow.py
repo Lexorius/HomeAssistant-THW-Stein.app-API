@@ -1,8 +1,16 @@
 """Config flow for THW Stein (API-Key and BU-ID)."""
 from __future__ import annotations
+
 import voluptuous as vol
 from homeassistant import config_entries
-from .const import DOMAIN, CONF_API_KEY, CONF_BU_ID, CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
+
+from .const import (
+    CONF_API_KEY,
+    CONF_BU_ID,
+    CONF_SCAN_INTERVAL,
+    DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
+)
 
 DATA_SCHEMA = vol.Schema({
     vol.Required(CONF_API_KEY): str,

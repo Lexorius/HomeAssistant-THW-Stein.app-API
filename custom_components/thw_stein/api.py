@@ -1,7 +1,9 @@
 """Simple async client for Stein.APP API using Bearer token."""
 from __future__ import annotations
-from typing import Any, Dict, List
+
 import logging
+from typing import Any, Dict, List
+
 from aiohttp import ClientSession
 
 _LOGGER = logging.getLogger(__name__)

@@ -1,0 +1,74 @@
+name: Python checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  python:
+    name: Python checks
+    runs-on: ubuntu-latest
+    env:
+      DOMAIN: thw_stein
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install ruff pyyaml
+
+      - name: Compile-check
+        run: python -m compileall -q custom_components/
+
+      - name: Manifest-Check
+        run: bash scripts/check-manifest.sh
+
+      - name: Ruff
+        run: ruff check custom_components/ --select E,F,W,I --ignore E501
+
+      - name: JSON lint
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          ok = True
+          for f in Path(".").rglob("*.json"):
+              if ".git" in f.parts:
+                  continue
+              try:
+                  json.loads(f.read_text(encoding="utf-8"))
+              except Exception as e:
+                  print(f"FAIL {f}: {e}"); ok = False
+          sys.exit(0 if ok else 1)
+          PY
+
+      - name: YAML lint
+        run: |
+          python - <<'PY'
+          import sys, yaml
+          from pathlib import Path
+          ok = True
+          for f in list(Path(".").rglob("*.yml")) + list(Path(".").rglob("*.yaml")):
+              try:
+                  yaml.safe_load(f.read_text(encoding="utf-8"))
+              except Exception as e:
+                  print(f"FAIL {f}: {e}"); ok = False
+          sys.exit(0 if ok else 1)
+          PY
+
+      - name: Version-Konsistenz
+        run: |
+          V=$(python -c "import json; print(json.load(open('custom_components/${DOMAIN}/manifest.json'))['version'])")
+          if [ ! -f CHANGELOG.md ]; then
+            echo "::warning::CHANGELOG.md fehlt – überspringe Version-Konsistenz-Check"
+            exit 0
+          fi
+          if ! grep -q "\[$V\]" CHANGELOG.md; then
+            echo "::error::Version $V fehlt im CHANGELOG.md"; exit 1
+          fi
+          echo "✓ Version $V im CHANGELOG"

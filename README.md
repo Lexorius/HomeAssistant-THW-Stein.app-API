@@ -7,6 +7,11 @@
 ![HA Analytics](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fanalytics.home-assistant.io%2Fcustom_integrations.json&query=%.total&style=for-the-badge&label=Active%20Installations&color=red)
 [![hacs](https://img.shields.io/badge/HACS-Integration-blue.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
+[![hassfest](https://img.shields.io/github/actions/workflow/status/Lexorius/HomeAssistant-THW-Stein.app-API/hassfest.yml?branch=main&style=for-the-badge&label=hassfest)](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/actions/workflows/hassfest.yml)
+[![HACS validation](https://img.shields.io/github/actions/workflow/status/Lexorius/HomeAssistant-THW-Stein.app-API/hacs.yml?branch=main&style=for-the-badge&label=HACS%20validation)](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/actions/workflows/hacs.yml)
+[![Python checks](https://img.shields.io/github/actions/workflow/status/Lexorius/HomeAssistant-THW-Stein.app-API/python-checks.yml?branch=main&style=for-the-badge&label=Python%20checks)](https://github.com/Lexorius/HomeAssistant-THW-Stein.app-API/actions/workflows/python-checks.yml)
+
+Each release is automatically validated by GitHub Actions: **hassfest** (Home Assistant manifest checks), **HACS validation**, and a **Python checks** workflow that runs `compileall`, `ruff`, the local manifest order check (`scripts/check-manifest.sh`), JSON/YAML lint, and a CHANGELOG-version-consistency check.
 
 ## Overview
 
@@ -17,7 +22,7 @@
 
 Displays vehicle and asset status from **Stein.APP** directly in Home Assistant.
 
-**Version 0.4.0** – 2025-07-04 
+**Version 0.6.2** – 2026-05-02
 
 ---
 

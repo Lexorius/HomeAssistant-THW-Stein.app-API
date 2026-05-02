@@ -2,10 +2,6 @@
   "name": "THW Stein",
   "content_in_root": false,
   "zip_release": false,
-  "domains": [
-    "thw_stein"
-  ],
   "homeassistant": "2024.1.0",
-  "render_readme": true,
-  "logo": "icon.png"
+  "render_readme": true
 }
